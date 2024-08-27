@@ -1,0 +1,27 @@
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+name = "INFO 5940"
+version = "1.0.0"
+description = ""
+authors = ["Ayham Boucher <private>"]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+aioboto3 = "^12"
+fsspec = "*"
+openai = "^1.14"
+pandas = "^2"
+poetry = "^1.7"
+pydantic = "^2"
+s3fs = "*"
+
+[tool.poetry.group.dev.dependencies]
+cfn_flip = "*"
+cfn-lint = "*"
+ipykernel = "*"
+openpyxl = "*"
+beautifulsoup4 = "*"
+pyarrow = "*"

@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+  
+  devcontainer:
+    container_name: info-5940-devcontainer
+    build:
+      dockerfile: Dockerfile
+      target: devcontainer
+    environment:
+      AWS_PROFILE: aaii
+      AZURE_OPENAI_API_KEY: <API_KEY>
+      AZURE_OPENAI_ENDPOINT: <ENDPOINT>
+      AZURE_OPENAI_MODEL_DEPLOYMENT: gpt-4
+    volumes:
+      - '$HOME/.aws:/root/.aws'
+      - '.:/workspace'
