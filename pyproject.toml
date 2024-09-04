@@ -17,6 +17,12 @@ pandas = "^2"
 poetry = "^1.7"
 pydantic = "^2"
 s3fs = "*"
+streamlit = "^1.0"
+tiktoken = "^0.7.0"
+langchain-community = "^0.2.15"
+langchain = "^0.2.15"
+langchain_core = "^0.2.15"
+langchain-openai = "^0.1.23"
 
 [tool.poetry.group.dev.dependencies]
 cfn_flip = "*"

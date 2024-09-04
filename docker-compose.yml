@@ -11,6 +11,7 @@ services:
       AZURE_OPENAI_API_KEY: <API_KEY>
       AZURE_OPENAI_ENDPOINT: <ENDPOINT>
       AZURE_OPENAI_MODEL_DEPLOYMENT: gpt-4
+      OPENAI_API_KEY: <API_KEY>
     volumes:
       - '$HOME/.aws:/root/.aws'
       - '.:/workspace'

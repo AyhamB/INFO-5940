@@ -1,8 +1,9 @@
 import streamlit as st
 from openai import AzureOpenAI
+from openai import OpenAI
 from os import environ
 
-st.title("Chatbot")
+st.title("Awesome Chatbot")
 st.caption("Powered by INFO-5940")
 
 if "messages" not in st.session_state:
@@ -13,21 +14,16 @@ for msg in st.session_state.messages:
 
 if prompt := st.chat_input():
 
-    client = AzureOpenAI(
-        api_key=environ['AZURE_OPENAI_API_KEY'],
-        api_version="2023-03-15-preview",
-        azure_endpoint=environ['AZURE_OPENAI_ENDPOINT'],
-        azure_deployment='gpt-4',
-    )
+    client = OpenAI(api_key=environ['OPENAI_API_KEY'])
 
     st.session_state.messages.append({"role": "user", "content": prompt})
     st.chat_message("user").write(prompt)
 
-    response = client.chat.completions.create(model="gpt4o", messages=st.session_state.messages)
+    with st.chat_message("assistant"):
+        stream = client.chat.completions.create(model="gpt-4o", 
+                                                messages=st.session_state.messages,
+                                                stream=True)
+        response = st.write_stream(stream)
 
-    msg = response.choices[0].message.content
-
-    st.session_state.messages.append({"role": "assistant", "content": msg})
-
-    st.chat_message("assistant").write(msg)
+    st.session_state.messages.append({"role": "assistant", "content": response})
 
