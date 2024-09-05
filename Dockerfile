@@ -20,6 +20,7 @@ RUN apt-get update \
         unzip \
         vim \
         wget \
+        ffmpeg \
     && rm -rf /var/lib/apt/lists/* \
     && apt-get clean 
 

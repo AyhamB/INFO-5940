@@ -3,7 +3,10 @@
 	"dockerComposeFile": "../docker-compose.yml",
 	"service": "devcontainer",
 	"workspaceFolder": "/workspace",
-
+	"mounts": [
+		"source=${localWorkspaceFolder}/data,target=/workspace/data,type=bind,consistency=cached"
+		
+	],
 	"customizations": {
 		"vscode": {
 			"extensions": [
