@@ -15,12 +15,13 @@ FROM base as devcontainer
 
 RUN apt-get update \
     && apt-get install -y \
-        curl \
-        git \
-        unzip \
-        vim \
-        wget \
-        ffmpeg \
+    curl \
+    git \
+    unzip \
+    vim \
+    wget \
+    gcc \
+    python3-dev \
     && rm -rf /var/lib/apt/lists/* \
     && apt-get clean 
 
