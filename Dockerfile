@@ -20,6 +20,7 @@ RUN apt-get update \
     unzip \
     vim \
     wget \
+    ffmpeg \
     gcc \
     python3-dev \
     && rm -rf /var/lib/apt/lists/* \
