@@ -23,6 +23,7 @@ RUN apt-get update \
     ffmpeg \
     gcc \
     python3-dev \
+    sqlite3 \
     && rm -rf /var/lib/apt/lists/* \
     && apt-get clean 
 
@@ -34,6 +35,12 @@ RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-$(uname -m).zip" -o "aws
 
 RUN poetry install --all-extras --no-interaction --no-ansi --no-root -vv \
     && rm -rf /root/.cache/pypoetry
+
+# Download the Chinook SQL script
+RUN wget https://raw.githubusercontent.com/lerocha/chinook-database/master/ChinookDatabase/DataSources/Chinook_Sqlite.sql -O /code/Chinook_Sqlite.sql
+
+# Create the Chinook.db database
+RUN sqlite3 /code/Chinook.db ".read /code/Chinook_Sqlite.sql"
 
 WORKDIR /workspace
 
