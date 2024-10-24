@@ -1,6 +1,23 @@
 version: '3.8'
 services:
-  
+  neo4j:
+    image: neo4j:5.11
+    container_name: neo4j
+    ports:
+      - "7474:7474"  # HTTP port
+      - "7687:7687"  # Bolt port
+    environment:
+      - NEO4J_AUTH=neo4j/your_password
+      - NEO4J_dbms_default__database=movies
+      - NEO4JLABS_PLUGINS=["apoc"]
+    volumes:
+      - neo4j_data:/data
+      - neo4j_logs:/logs
+      - neo4j_import:/var/lib/neo4j/import
+      - neo4j_plugins:/plugins
+      - movies_init:/docker-entrypoint-initdb.d  # Shared volume
+
+
   devcontainer:
     container_name: info-5940-devcontainer
     build:
@@ -15,3 +32,12 @@ services:
     volumes:
       - '$HOME/.aws:/root/.aws'
       - '.:/workspace'
+    depends_on:
+      - neo4j
+
+volumes:
+  neo4j_data:
+  neo4j_logs:
+  neo4j_import:
+  neo4j_plugins:
+  movies_init:
