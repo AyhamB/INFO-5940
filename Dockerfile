@@ -39,6 +39,19 @@ RUN poetry install --all-extras --no-interaction --no-ansi --no-root -vv \
 # Download the Chinook SQL script
 RUN wget https://raw.githubusercontent.com/lerocha/chinook-database/master/ChinookDatabase/DataSources/Chinook_Sqlite.sql -O /code/Chinook_Sqlite.sql
 
+# Install gnupg and add the Neo4j repository securely
+RUN apt-get update && apt-get install -y gnupg wget \
+    && wget -qO - https://debian.neo4j.com/neotechnology.gpg.key | gpg --dearmor > /usr/share/keyrings/neo4j-archive-keyring.gpg \
+    && echo 'deb [signed-by=/usr/share/keyrings/neo4j-archive-keyring.gpg] https://debian.neo4j.com stable 5' > /etc/apt/sources.list.d/neo4j.list \
+    && apt-get update \
+    && apt-get install -y cypher-shell \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN mkdir -p /init \
+    && wget https://github.com/neo4j-graph-examples/movies/raw/main/scripts/movies.cypher \
+        -O /init/001-load-movies.cypher
+
+    
 # Create the Chinook.db database
 RUN sqlite3 /code/Chinook.db ".read /code/Chinook_Sqlite.sql"
 
