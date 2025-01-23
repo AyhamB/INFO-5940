@@ -1,8 +1,5 @@
 FROM public.ecr.aws/docker/library/python:3.11-slim-bookworm as base
 
-# Set the timezone so the machine has the correct time
-ENV TZ=America/New_York
-
 RUN apt-get update \
     && apt-get install -y \
         curl \
