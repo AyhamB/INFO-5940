@@ -1,5 +1,5 @@
 import streamlit as st
-from openai import AzureOpenAI
+from openai import OpenAI
 from os import environ
 
 st.title("Chatbot")
@@ -13,12 +13,7 @@ for msg in st.session_state.messages:
 
 if prompt := st.chat_input():
 
-    client = AzureOpenAI(
-        api_key=environ['AZURE_OPENAI_API_KEY'],
-        api_version="2023-03-15-preview",
-        azure_endpoint=environ['AZURE_OPENAI_ENDPOINT'],
-        azure_deployment='gpt-4',
-    )
+    client = OpenAI()
 
     st.session_state.messages.append({"role": "user", "content": prompt})
     st.chat_message("user").write(prompt)

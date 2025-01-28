@@ -17,6 +17,7 @@ pandas = "^2"
 poetry = "^1.7"
 pydantic = "^2"
 s3fs = "*"
+streamlit = "^1.0"
 
 [tool.poetry.group.dev.dependencies]
 cfn_flip = "*"
