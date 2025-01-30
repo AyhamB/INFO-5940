@@ -14,13 +14,13 @@ for msg in st.session_state.messages:
 
 if prompt := st.chat_input():
 
-    client = OpenAI(api_key=environ['OPENAI_API_KEY'])
+    client = OpenAI()
 
     st.session_state.messages.append({"role": "user", "content": prompt})
     st.chat_message("user").write(prompt)
 
     with st.chat_message("assistant"):
-        stream = client.chat.completions.create(model="gpt-4o", 
+        stream = client.chat.completions.create(model="openai.gpt-4o", 
                                                 messages=st.session_state.messages,
                                                 stream=True)
         response = st.write_stream(stream)
