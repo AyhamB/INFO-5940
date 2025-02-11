@@ -1,5 +1,4 @@
 import streamlit as st
-from openai import AzureOpenAI
 from openai import OpenAI
 from os import environ
 
@@ -14,15 +13,13 @@ for msg in st.session_state.messages:
 
 if prompt := st.chat_input():
 
-    
-
     client = OpenAI(api_key=environ['OPENAI_API_KEY'])
 
     st.session_state.messages.append({"role": "user", "content": prompt})
     st.chat_message("user").write(prompt)
 
     # use gpt-mini to parse if the prompt is about a question about cornell, harvard or duke. 
-    response = client.chat.completions.create(model="gpt-4o-mini", 
+    response = client.chat.completions.create(model="openai.gpt-4o-mini", 
                                               messages=[
             {
                 "role": "system",
@@ -48,7 +45,7 @@ if prompt := st.chat_input():
 
         with st.chat_message("assistant"):
             stream = client.chat.completions.create(
-                model="gpt-4o",  # Change this to a valid model name
+                model="openai.gpt-4o",  # Change this to a valid model name
                 messages=[
                     {"role": "system", "content": f"Here's the content of the file:\n\n{content}"},
                     *st.session_state.messages
@@ -59,7 +56,7 @@ if prompt := st.chat_input():
     
     else:
         with st.chat_message("assistant"):
-            stream = client.chat.completions.create(model="gpt-4o", 
+            stream = client.chat.completions.create(model="openai.gpt-4o", 
                                                     messages=st.session_state.messages,
                                                     stream=True)
             response = st.write_stream(stream)
