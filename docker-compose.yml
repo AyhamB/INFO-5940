@@ -7,11 +7,9 @@ services:
       dockerfile: Dockerfile
       target: devcontainer
     environment:
-      AWS_PROFILE: aaii
-      AZURE_OPENAI_API_KEY: <API_KEY>
-      AZURE_OPENAI_ENDPOINT: <ENDPOINT>
-      AZURE_OPENAI_MODEL_DEPLOYMENT: gpt-4
       OPENAI_API_KEY: <API_KEY>
+      OPENAI_BASE_URL: https://api.ai.it.cornell.edu/
+      TZ: America/New_York
     volumes:
       - '$HOME/.aws:/root/.aws'
       - '.:/workspace'
