@@ -29,7 +29,7 @@ def summarize_conversation(messages):
     summary_prompt += "\nSummary:"
 
     response = client.chat.completions.create(
-        model="gpt-4o-mini",
+        model="openai.gpt-4o-mini",
         messages=[{"role": "user", "content": summary_prompt}],
         max_tokens=100
     )
@@ -74,7 +74,7 @@ if prompt := st.chat_input():
     # Generate assistant response
     with st.chat_message("assistant"):
         stream = client.chat.completions.create(
-            model="gpt-4",
+            model="openai.gpt-4o",
             messages=st.session_state.messages,
             stream=True,
         )

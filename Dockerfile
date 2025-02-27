@@ -1,5 +1,16 @@
 FROM public.ecr.aws/docker/library/python:3.11-slim-bookworm as base
 
+RUN apt-get update \
+    && apt-get install -y \
+        curl \
+        git \
+        unzip \
+        vim \
+        wget \
+        gcc \
+    && rm -rf /var/lib/apt/lists/* \
+    && apt-get clean 
+
 RUN pip install --no-cache "poetry>1.7,<1.8" 
 RUN poetry config virtualenvs.create false
 
