@@ -7,7 +7,6 @@ name = "INFO 5940"
 version = "1.0.0"
 description = ""
 authors = ["Ayham Boucher <private>"]
-
 [tool.poetry.dependencies]
 python = "^3.11"
 aioboto3 = "^12"
@@ -29,6 +28,7 @@ langchain-chroma = "^0.1.4"
 pypdf = "^4.3.1"
 Markdown = "^3.7"
 protobuf = "3.20.0"
+neo4j = "^5.25.0"
 
 [tool.poetry.group.dev.dependencies]
 cfn_flip = "*"
