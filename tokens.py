@@ -38,7 +38,7 @@ if prompt := st.chat_input():
 
     with st.chat_message("assistant"):
         stream = client.chat.completions.create(
-            model="gpt-4o",
+            model="openai.gpt-4o",
             messages=st.session_state.messages,
             stream=True,
         )
